@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://cheat_menu.gd" id="1_cheat"]
+
+[node name="CheatMenu" type="CanvasLayer"]
+script = ExtResource("1_cheat")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 220.0
+offset_top = 60.0
+offset_right = 740.0
+offset_bottom = 660.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox"]
+text = "Cheat Menu"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Panel/Margin/VBox"]
+text = "Add a Pokemon directly to your party"
+horizontal_alignment = 1
+
+[node name="SpeciesId" type="LineEdit" parent="Panel/Margin/VBox"]
+placeholder_text = "Existing species ID (example: pikachu)"
+
+[node name="SpeciesOptions" type="OptionButton" parent="Panel/Margin/VBox"]
+
+[node name="LevelLabel" type="Label" parent="Panel/Margin/VBox"]
+text = "Level"
+
+[node name="Level" type="SpinBox" parent="Panel/Margin/VBox"]
+min_value = 1.0
+max_value = 100.0
+value = 5.0
+
+[node name="AddButton" type="Button" parent="Panel/Margin/VBox"]
+text = "Summon Pokemon"
+
+[node name="ItemHint" type="Label" parent="Panel/Margin/VBox"]
+text = "Add items to the bag"
+horizontal_alignment = 1
+
+[node name="ItemOptions" type="OptionButton" parent="Panel/Margin/VBox"]
+
+[node name="ItemQuantity" type="SpinBox" parent="Panel/Margin/VBox"]
+min_value = 1.0
+max_value = 999.0
+value = 1.0
+
+[node name="SummonItemButton" type="Button" parent="Panel/Margin/VBox"]
+text = "Summon Item"
+
+[node name="ItemCreateHint" type="Label" parent="Panel/Margin/VBox"]
+text = "Create a new item for this project"
+horizontal_alignment = 1
+
+[node name="NewItemId" type="LineEdit" parent="Panel/Margin/VBox"]
+placeholder_text = "New item ID (example: escape_rope)"
+
+[node name="NewItemName" type="LineEdit" parent="Panel/Margin/VBox"]
+placeholder_text = "Display name (example: Escape Rope)"
+
+[node name="NewItemCategory" type="OptionButton" parent="Panel/Margin/VBox"]
+
+[node name="CreateItemButton" type="Button" parent="Panel/Margin/VBox"]
+text = "Create Item"
+
+[node name="Status" type="Label" parent="Panel/Margin/VBox"]
+text = "Press F2 to open cheats."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Panel/Margin/VBox/AddButton" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/SummonItemButton" to="." method="_on_summon_item_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/CreateItemButton" to="." method="_on_create_item_pressed"]
+[connection signal="item_selected" from="Panel/Margin/VBox/SpeciesOptions" to="." method="on_species_option_selected"]

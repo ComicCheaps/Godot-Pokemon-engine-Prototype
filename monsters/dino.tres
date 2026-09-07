@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterProfile" format=3]
+
+[ext_resource type="Script" path="res://monster_ability.gd" id="1_di4ui"]
+[ext_resource type="Script" path="res://monster_evolution.gd" id="2_mu0py"]
+[ext_resource type="Script" path="res://monster_move.gd" id="3_o2u51"]
+[ext_resource type="Script" path="res://monster_profile.gd" id="4_isfao"]
+
+[resource]
+script = ExtResource("4_isfao")
+species_id = "dino"
+species_name = "dino"
+type_ids = Array[String](["dragon"])
+experience_requirements = PackedInt32Array()

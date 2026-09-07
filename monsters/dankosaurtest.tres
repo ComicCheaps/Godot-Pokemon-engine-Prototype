@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MonsterProfile" format=3]
+
+[ext_resource type="Script" path="res://monster_ability.gd" id="1_08vl6"]
+[ext_resource type="Script" path="res://monster_evolution.gd" id="2_iqr7a"]
+[ext_resource type="Script" path="res://monster_move.gd" id="3_6ncdr"]
+[ext_resource type="Script" path="res://monster_profile.gd" id="4_sphih"]
+
+[resource]
+script = ExtResource("4_sphih")
+species_id = "dango"
+species_name = "Dango"
+type_ids = Array[String](["normal", "rock"])
+experience_requirements = PackedInt32Array()
+metadata/_custom_type_script = "uid://4nac7adi31rq"

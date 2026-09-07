@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dvng007fum2w3"]
+
+[ext_resource type="Script" uid="uid://lp4yge0jjwcp" path="res://monster.gd" id="1_monster"]
+
+[node name="Monster" type="Node3D" unique_id=2040517936]
+script = ExtResource("1_monster")
+
+[node name="ShadowSprite3D" type="AnimatedSprite3D" parent="."]
+position = Vector3(0, -0.55, 0)
+scale = Vector3(1, 0.25, 1)
+billboard = 2
+visible = false
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+visible = false

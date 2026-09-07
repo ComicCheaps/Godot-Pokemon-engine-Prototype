@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://csk563vu74lgk"]
+
+[ext_resource type="PackedScene" uid="uid://drdmtu2ohj5dc" path="res://player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://warp_block.tscn" id="2_warp"]
+[ext_resource type="PackedScene" path="res://dialogue_box.tscn" id="3_dialogue"]
+[ext_resource type="PackedScene" path="res://battle.tscn" id="4_battle"]
+[ext_resource type="PackedScene" path="res://battle_arena.tscn" id="5_arena"]
+[ext_resource type="PackedScene" path="res://cheat_menu.tscn" id="6_cheat"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="7_pause"]
+[ext_resource type="PackedScene" path="res://monster_database.tscn" id="8_database"]
+[ext_resource type="PackedScene" uid="uid://du2qui61ik02x" path="res://npc.tscn" id="9_npc"]
+[ext_resource type="PackedScene" path="res://short_grass_patch.tscn" id="11_d0kjt"]
+[ext_resource type="Script" uid="uid://cn24moimjoxxr" path="res://village_placidity.gd" id="11_village"]
+
+[sub_resource type="Environment" id="Environment_village"]
+background_mode = 1
+background_color = Color(0.55, 0.72, 0.68, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.82, 0.92, 0.86, 1)
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 0.8
+ssil_enabled = true
+ssil_intensity = 0.35
+adjustment_enabled = true
+adjustment_brightness = 1.04
+adjustment_contrast = 1.02
+adjustment_saturation = 1.05
+
+[sub_resource type="StandardMaterial3D" id="Material_ground"]
+albedo_color = Color(0.38, 0.56, 0.36, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(14, 0.2, 12)
+
+[sub_resource type="BoxShape3D" id="Shape_ground"]
+size = Vector3(14, 0.2, 12)
+
+[sub_resource type="StandardMaterial3D" id="Material_marker"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.95, 0.95, 0.3, 0.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_marker"]
+size = Vector3(0.35, 0.04, 0.35)
+
+[node name="VillageOfPlacidity" type="Node3D" unique_id=1829723760]
+script = ExtResource("11_village")
+
+[node name="DialogueManager" parent="." unique_id=1764544647 instance=ExtResource("3_dialogue")]
+
+[node name="Battle" parent="." unique_id=1977050351 instance=ExtResource("4_battle")]
+
+[node name="BattleArena" parent="." unique_id=1337908436 instance=ExtResource("5_arena")]
+area_theme = "Grass"
+
+[node name="CheatMenu" parent="." unique_id=456776445 instance=ExtResource("6_cheat")]
+
+[node name="PauseMenu" parent="." unique_id=1361625608 instance=ExtResource("7_pause")]
+
+[node name="MonsterDatabase" parent="." unique_id=1725568237 instance=ExtResource("8_database")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=453778240]
+environment = SubResource("Environment_village")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1131205336]
+transform = Transform3D(0.90630776, 0.3237444, -0.2716538, 0, 0.64278764, 0.76604444, 0.42261827, -0.69427204, 0.5825634, 0, 0, 0)
+light_color = Color(1, 0.96, 0.84, 1)
+light_energy = 1.15
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="Ground" type="MeshInstance3D" parent="." groups=["editable_world_object"] unique_id=1116208277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4492387, 0)
+material_override = SubResource("Material_ground")
+mesh = SubResource("BoxMesh_ground")
+
+[node name="GroundCollision" type="StaticBody3D" parent="Ground" unique_id=2116073569]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/GroundCollision" unique_id=1173304828]
+shape = SubResource("Shape_ground")
+
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=198492677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.176, 4.7)
+
+[node name="SpawnMarkerVisual" type="MeshInstance3D" parent="PlayerSpawn" unique_id=585960438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 0)
+material_override = SubResource("Material_marker")
+mesh = SubResource("BoxMesh_marker")
+
+[node name="Player" parent="." unique_id=320220387 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.176, 4.7)
+
+[node name="PlacidityKeeper" parent="." unique_id=1798799681 instance=ExtResource("9_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.176, -0.8)
+npc_name = "Placidity Keeper"
+dialogue = Array[String](["Welcome to the Village of Placidity.", "Take a breath. The quiet here is part of the journey."])
+interaction_range = 1.5
+
+[node name="WarpToMeadow" parent="." unique_id=353737258 instance=ExtResource("2_warp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 5.7)
+
+[node name="ShortGrassPatch" parent="." unique_id=1670616350 instance=ExtResource("11_d0kjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1372366, 0.5335271, 1.3854764)

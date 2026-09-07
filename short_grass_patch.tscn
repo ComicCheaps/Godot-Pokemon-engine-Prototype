@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://procedural_grass_patch.gd" id="1_grass_patch"]
+[ext_resource type="Texture2D" path="res://assets/Grasses/grass.png" id="2_short_grass"]
+
+[node name="ShortGrassPatch" type="Node3D"]
+script = ExtResource("1_grass_patch")
+blade_count = 800
+patch_size = Vector2(4, 4)
+grass_textures = Array[Texture2D]([ExtResource("2_short_grass")])
+blade_width = 0.38
+blade_height = 0.48
+min_blade_scale = 0.72
+max_blade_scale = 1.0
+vertical_offset = 0.02
+wind_direction = Vector2(1, 0.2)
+wind_strength = 0.16
+wind_speed = 1.8
+turbulence_strength = 0.1
+interaction_radius = 1.2
+interaction_strength = 0.28
+gust_decay_per_second = 1.4
+cast_shadows = false

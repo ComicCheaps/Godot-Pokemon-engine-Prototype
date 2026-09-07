@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MonsterProfile" format=3]
+
+[ext_resource type="Script" path="res://monster_ability.gd" id="1"]
+[ext_resource type="Script" path="res://monster_evolution.gd" id="2"]
+[ext_resource type="Script" path="res://monster_move.gd" id="3"]
+[ext_resource type="Script" path="res://monster_profile.gd" id="4"]
+
+[resource]
+script = ExtResource("4")
+national_dex_id = 1
+species_id = "new_monster"
+species_name = "New Pokemon"
+type_ids = Array[String](["normal"])
+default_animation = "default"
+battle_size = 1.0
+base_stats = {
+"attack": 1,
+"defense": 1,
+"hp": 1,
+"special_attack": 1,
+"special_defense": 1,
+"speed": 1
+}
+max_level = 100
+experience_group = "Medium Fast"
+experience_requirements = PackedInt32Array()
+base_experience_yield = 50
+catch_rate = 45
+learnable_moves = Array[ExtResource("3")]([])
+abilities = Array[ExtResource("1")]([])
+evolutions = Array[ExtResource("2")]([])

@@ -1,0 +1,178 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://battle_arena.gd" id="1_arena"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_arena"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_back"]
+albedo_color = Color(0.258824, 0.419608, 0.447059, 1)
+metallic = 0.15
+roughness = 0.35
+clearcoat_enabled = true
+clearcoat = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tree"]
+top_radius = 0.18
+bottom_radius = 0.28
+height = 2.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tree_canopy"]
+top_radius = 0.0
+bottom_radius = 1.1
+height = 2.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_tree_trunk"]
+albedo_color = Color(0.247059, 0.160784, 0.101961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_tree_leaves"]
+albedo_color = Color(0.133333, 0.337255, 0.196078, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_sparkle"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.92, 0.6, 0.85)
+emission_enabled = true
+emission = Color(1, 0.85, 0.4, 1)
+emission_energy_multiplier = 2.5
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_sparkle"]
+material = SubResource("StandardMaterial_sparkle")
+size = Vector2(0.08, 0.08)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sparkle"]
+emission_shape = 1
+emission_box_extents = Vector3(8, 0.2, 8)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0.15, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.4
+scale_min = 0.5
+scale_max = 1.4
+color = Color(1, 0.9, 0.55, 1)
+
+[sub_resource type="Environment" id="Environment_battle"]
+background_mode = 1
+background_color = Color(0.0431373, 0.0745098, 0.109804, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.501961, 0.619608, 0.752941, 1)
+ambient_light_energy = 0.7
+fog_enabled = true
+fog_light_color = Color(0.231373, 0.32549, 0.4, 1)
+fog_density = 0.025
+ssr_enabled = true
+ssr_max_steps = 64
+ssr_fade_in = 0.1
+ssao_enabled = true
+ssao_intensity = 1.6
+ssao_radius = 1.4
+ssil_enabled = true
+ssil_intensity = 0.85
+glow_enabled = true
+glow_intensity = 0.7
+glow_bloom = 0.18
+glow_hdr_threshold = 1.0
+glow_blend_mode = 2
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.1
+adjustment_saturation = 1.15
+
+[node name="BattleArena" type="Node3D"]
+script = ExtResource("1_arena")
+
+[node name="ArenaFloor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_arena")
+material_override = SubResource("StandardMaterial_back")
+
+[node name="PlayerPlatform" type="Node3D" parent="."]
+position = Vector3(-3, 0.1, 1)
+
+[node name="OpponentPlatform" type="Node3D" parent="."]
+position = Vector3(3, 0.1, -1)
+
+[node name="PlayerPokemon" type="AnimatedSprite3D" parent="."]
+position = Vector3(-3, 1.1, 1)
+billboard = 1
+visible = false
+
+[node name="PlayerPokemonShadow" type="AnimatedSprite3D" parent="."]
+position = Vector3(-3, 0.43, 1)
+scale = Vector3(1.15, 0.22, 1.0)
+billboard = 1
+modulate = Color(0, 0, 0, 0.4)
+visible = false
+
+[node name="OpponentPokemon" type="AnimatedSprite3D" parent="."]
+position = Vector3(3, 1.1, -1)
+billboard = 1
+visible = false
+
+[node name="OpponentPokemonShadow" type="AnimatedSprite3D" parent="."]
+position = Vector3(3, 0.43, -1)
+scale = Vector3(1.15, 0.22, 1.0)
+billboard = 1
+modulate = Color(0, 0, 0, 0.4)
+visible = false
+
+[node name="BattleCamera" type="Camera3D" parent="."]
+position = Vector3(0, 7, 10)
+rotation_degrees = Vector3(-28, 0, 0)
+fov = 55.0
+current = false
+
+[node name="BattleLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -20, 0)
+light_energy = 1.4
+shadow_enabled = true
+directional_shadow_mode = 2
+directional_shadow_max_distance = 40.0
+shadow_bias = 0.03
+light_angular_distance = 1.5
+
+[node name="BattleEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_battle")
+
+[node name="ArenaReflectionProbe" type="ReflectionProbe" parent="."]
+position = Vector3(0, 3, 0)
+size = Vector3(22, 8, 22)
+box_projection = true
+update_mode = 0
+
+[node name="AmbientSparkles" type="GPUParticles3D" parent="."]
+position = Vector3(0, 0.2, 0)
+amount = 48
+lifetime = 5.0
+randomness = 0.6
+process_material = SubResource("ParticleProcessMaterial_sparkle")
+draw_pass_1 = SubResource("QuadMesh_sparkle")
+
+[node name="TreeLeft" type="Node3D" parent="."]
+position = Vector3(-5.2, 0, -2.4)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeLeft"]
+position = Vector3(0, 1.1, 0)
+mesh = SubResource("CylinderMesh_tree")
+material_override = SubResource("StandardMaterial_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="TreeLeft"]
+position = Vector3(0, 2.7, 0)
+mesh = SubResource("CylinderMesh_tree_canopy")
+material_override = SubResource("StandardMaterial_tree_leaves")
+
+[node name="TreeRight" type="Node3D" parent="."]
+position = Vector3(5.1, 0, -2.2)
+scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeRight"]
+position = Vector3(0, 1.1, 0)
+mesh = SubResource("CylinderMesh_tree")
+material_override = SubResource("StandardMaterial_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="TreeRight"]
+position = Vector3(0, 2.7, 0)
+mesh = SubResource("CylinderMesh_tree_canopy")
+material_override = SubResource("StandardMaterial_tree_leaves")

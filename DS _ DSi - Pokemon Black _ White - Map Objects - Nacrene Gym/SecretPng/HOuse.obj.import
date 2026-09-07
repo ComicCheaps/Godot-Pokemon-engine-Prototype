@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtr8q0ctn0ggt"
+path="res://.godot/imported/HOuse.obj-ae362922bb80bcb411b92373c07b1211.mesh"
+
+[deps]
+
+files=["res://.godot/imported/HOuse.obj-ae362922bb80bcb411b92373c07b1211.mesh"]
+
+source_file="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/HOuse.obj"
+dest_files=["res://.godot/imported/HOuse.obj-ae362922bb80bcb411b92373c07b1211.mesh", "res://.godot/imported/HOuse.obj-ae362922bb80bcb411b92373c07b1211.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

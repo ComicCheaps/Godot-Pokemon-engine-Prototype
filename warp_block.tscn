@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://warp_block.gd" id="1_warp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_warp"]
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_warp"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.2, 0.75, 1, 0.4)
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxShape3D" id="BoxShape_warp"]
+size = Vector3(1, 1, 1)
+
+[node name="WarpBlock" type="Area3D"]
+script = ExtResource("1_warp")
+collision_layer = 0
+collision_mask = 1
+
+[node name="WarpVisual" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_warp")
+material_override = SubResource("StandardMaterial_warp")
+position = Vector3(0, 0.03, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape_warp")

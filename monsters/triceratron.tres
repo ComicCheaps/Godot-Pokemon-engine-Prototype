@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MonsterProfile" format=3 uid="uid://b3221320wwa4a"]
+
+[ext_resource type="Script" uid="uid://b4pl2tqu4envo" path="res://monster_ability.gd" id="1_2qbow"]
+[ext_resource type="Script" uid="uid://g4ux0v0mr0hi" path="res://monster_evolution.gd" id="2_iurww"]
+[ext_resource type="Script" uid="uid://dmr7xbb3pajy6" path="res://monster_move.gd" id="3_tduqo"]
+[ext_resource type="Script" uid="uid://4nac7adi31rq" path="res://monster_profile.gd" id="4_1lkpe"]
+
+[resource]
+script = ExtResource("4_1lkpe")
+species_id = "triceratron"
+species_name = "Triceratron"
+base_stats = {
+"attack": 100,
+"defense": 100,
+"hp": 100,
+"special_attack": 100,
+"special_defense": 100,
+"speed": 20
+}
+experience_requirements = PackedInt32Array()

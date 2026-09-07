@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://drdmtu2ohj5dc"]
+
+[ext_resource type="Script" uid="uid://hvv67wy7e1ds" path="res://character_body_3d.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" path="res://monster_party.tscn" id="11_party"]
+[ext_resource type="Script" path="res://item_bag.gd" id="12_bag"]
+[ext_resource type="Texture2D" uid="uid://tlb8fbyt42gg" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/Front-WalkStand.png" id="2_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://l6laqkceeh16" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/FrontWalk1.png" id="3_nvl01"]
+[ext_resource type="Texture2D" uid="uid://c5ne7vbpyunpj" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/FrontWalk2.png" id="4_ivps1"]
+[ext_resource type="Texture2D" uid="uid://u5vj4j23a5o1" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/Side-WalkStand.png" id="5_urp6f"]
+[ext_resource type="Texture2D" uid="uid://ch7qwgxofx27n" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/SideWalk1.png" id="6_bwjto"]
+[ext_resource type="Texture2D" uid="uid://iba4kgnnr18r" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/SideWalk2.png" id="7_606se"]
+[ext_resource type="Texture2D" uid="uid://ml2pyj86ggq6" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/Up-WalkStand.png" id="8_u1c27"]
+[ext_resource type="Texture2D" uid="uid://c15jljbvd317c" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/UpWalk1.png" id="9_op7ga"]
+[ext_resource type="Texture2D" uid="uid://b7iqxdhfaj2mf" path="res://DS _ DSi - Pokemon Black _ White - Map Objects - Nacrene Gym/SecretPng/UpWalk2.png" id="10_q13i1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybadk"]
+size = Vector3(1, 0.86535645, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3rhnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n7ghd")
+}],
+"loop": 0,
+"name": &"IdleFront",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_urp6f")
+}],
+"loop": 0,
+"name": &"IdleSides",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_u1c27")
+}],
+"loop": 0,
+"name": &"IdleUp",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n7ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nvl01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ivps1")
+}],
+"loop": 1,
+"name": &"WalkFront",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_606se")
+}],
+"loop": 1,
+"name": &"WalkSides",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q13i1")
+}],
+"loop": 1,
+"name": &"WalkUp",
+"speed": 9.0
+}]
+
+[node name="Player" type="CharacterBody3D" unique_id=1734923564]
+script = ExtResource("1_onrkg")
+collision_layer = 1
+collision_mask = 1
+
+[node name="Party" parent="." instance=ExtResource("11_party")]
+
+[node name="Bag" type="Node" parent="."]
+script = ExtResource("12_bag")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1701856481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1231522, 0)
+shape = SubResource("BoxShape3D_ybadk")
+collision_layer = 1
+collision_mask = 1
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1732354378]
+transform = Transform3D(1, 0, 0, 0, 0.9178322, 0.39696863, 0, -0.39696863, 0.9178322, -0.034739733, 0.7589923, 2.1449194)
+projection = 0
+fov = 62.0
+near = 0.05
+current = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=877487458]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_3rhnh")
+animation = &"IdleFront"

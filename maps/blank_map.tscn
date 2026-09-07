@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://terrain_map.gd" id="2_terrain"]
+[ext_resource type="Script" path="res://grid_debug.gd" id="3_grid"]
+[ext_resource type="PackedScene" path="res://dialogue_box.tscn" id="4_dialogue"]
+[ext_resource type="PackedScene" path="res://battle.tscn" id="5_battle"]
+[ext_resource type="PackedScene" path="res://battle_arena.tscn" id="6_arena"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="7_pause"]
+
+[sub_resource type="Environment" id="Environment_blank"]
+background_mode = 1
+background_color = Color(0.33, 0.52, 0.66, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.8, 0.88, 0.94, 1)
+ambient_light_energy = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(40, 0.2, 40)
+
+[sub_resource type="StandardMaterial3D" id="Material_ground"]
+albedo_color = Color(0.28, 0.48, 0.3, 1)
+roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(40, 0.2, 40)
+
+[node name="BlankMap" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_blank")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -35, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="." groups=["editable_world_object"]]
+material_override = SubResource("Material_ground")
+mesh = SubResource("BoxMesh_ground")
+
+[node name="GroundCollision" type="StaticBody3D" parent="Ground"]
+collision_layer = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/GroundCollision"]
+shape = SubResource("BoxShape_ground")
+
+[node name="TerrainMap" type="Node3D" parent="."]
+script = ExtResource("2_terrain")
+
+[node name="GridDebug" type="Node3D" parent="."]
+script = ExtResource("3_grid")
+
+[node name="DialogueManager" parent="." instance=ExtResource("4_dialogue")]
+
+[node name="Battle" parent="." instance=ExtResource("5_battle")]
+
+[node name="BattleArena" parent="." instance=ExtResource("6_arena")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_pause")]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1.176, 0)

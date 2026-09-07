@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://monster_database.gd" id="1_database"]
+
+[node name="MonsterDatabase" type="CanvasLayer"]
+script = ExtResource("1_database")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 80.0
+offset_top = 35.0
+offset_right = 880.0
+offset_bottom = 650.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox"]
+text = "Pokemon Database   (F3)"
+horizontal_alignment = 1
+
+[node name="SpeciesList" type="OptionButton" parent="Panel/Margin/VBox"]
+
+[node name="Identity" type="HBoxContainer" parent="Panel/Margin/VBox"]
+theme_override_constants/separation = 6
+
+[node name="Id" type="LineEdit" parent="Panel/Margin/VBox/Identity"]
+placeholder_text = "Species ID"
+size_flags_horizontal = 3
+
+[node name="Name" type="LineEdit" parent="Panel/Margin/VBox/Identity"]
+placeholder_text = "Species name"
+size_flags_horizontal = 3
+
+[node name="Types" type="LineEdit" parent="Panel/Margin/VBox/Identity"]
+placeholder_text = "Types: normal, fire"
+size_flags_horizontal = 3
+
+[node name="StatsLabel" type="Label" parent="Panel/Margin/VBox"]
+text = "Base stats (hp: 1, attack: 1, defense: 1, special_attack: 1, special_defense: 1, speed: 1)"
+
+[node name="Stats" type="LineEdit" parent="Panel/Margin/VBox"]
+placeholder_text = "Base stats"
+
+[node name="MovesLabel" type="Label" parent="Panel/Margin/VBox"]
+text = "Moves: one per line, move_id | Move Name | learn level"
+
+[node name="Moves" type="TextEdit" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 65)
+placeholder_text = "tackle | Tackle | 1"
+
+[node name="AbilitiesLabel" type="Label" parent="Panel/Margin/VBox"]
+text = "Abilities: ability_id | Ability Name | hidden true/false | description"
+
+[node name="Abilities" type="TextEdit" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 65)
+placeholder_text = "sturdy | Sturdy | false | Prevents one-hit knockouts"
+
+[node name="EvolutionsLabel" type="Label" parent="Panel/Margin/VBox"]
+text = "Evolutions: species_id | Species Name | method | minimum level"
+
+[node name="Evolutions" type="TextEdit" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 55)
+placeholder_text = "nextmon | Nextmon | Level | 16"
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/Margin/VBox"]
+theme_override_constants/separation = 8
+
+[node name="New" type="Button" parent="Panel/Margin/VBox/Buttons"]
+text = "New Pokemon"
+
+[node name="Save" type="Button" parent="Panel/Margin/VBox/Buttons"]
+text = "Save Pokemon"
+
+[node name="Delete" type="Button" parent="Panel/Margin/VBox/Buttons"]
+text = "Delete Pokemon"
+
+[node name="Close" type="Button" parent="Panel/Margin/VBox/Buttons"]
+text = "Close"
+
+[node name="Status" type="Label" parent="Panel/Margin/VBox"]
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[connection signal="item_selected" from="Panel/Margin/VBox/SpeciesList" to="." method="_on_species_selected"]
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/Close" to="." method="_on_close_pressed"]

@@ -1,0 +1,265 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://battle.gd" id="1_battle"]
+[ext_resource type="Texture2D" path="res://assets/Capsules/Resonance Capsule.png" id="2_capsule"]
+
+[node name="Battle" type="CanvasLayer"]
+script = ExtResource("1_battle")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 180.0
+offset_top = 80.0
+offset_right = 780.0
+offset_bottom = 240.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox"]
+text = "Battle"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="Panel/Margin/VBox"]
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+visible = false
+
+[node name="OpponentInfo" type="PanelContainer" parent="HUD"]
+offset_left = 36.0
+offset_top = 45.0
+offset_right = 330.0
+offset_bottom = 135.0
+
+[node name="VBox" type="VBoxContainer" parent="HUD/OpponentInfo"]
+
+[node name="Name" type="Label" parent="HUD/OpponentInfo/VBox"]
+text = "Opponent Pokemon"
+
+[node name="Level" type="Label" parent="HUD/OpponentInfo/VBox"]
+text = "Lv. 5"
+
+[node name="HP" type="ProgressBar" parent="HUD/OpponentInfo/VBox"]
+value = 100.0
+show_percentage = false
+
+[node name="PlayerInfo" type="PanelContainer" parent="HUD"]
+offset_left = 590.0
+offset_top = 280.0
+offset_right = 884.0
+offset_bottom = 370.0
+
+[node name="VBox" type="VBoxContainer" parent="HUD/PlayerInfo"]
+
+[node name="Name" type="Label" parent="HUD/PlayerInfo/VBox"]
+text = "Player Pokemon"
+
+[node name="Level" type="Label" parent="HUD/PlayerInfo/VBox"]
+text = "Lv. 5"
+
+[node name="HP" type="ProgressBar" parent="HUD/PlayerInfo/VBox"]
+value = 100.0
+show_percentage = false
+
+[node name="EXP" type="ProgressBar" parent="HUD/PlayerInfo/VBox"]
+custom_minimum_size = Vector2(0, 6)
+value = 0.0
+show_percentage = false
+
+[node name="ActionPanel" type="PanelContainer" parent="HUD"]
+offset_left = 300.0
+offset_top = 420.0
+offset_right = 900.0
+offset_bottom = 585.0
+
+[node name="VBox" type="VBoxContainer" parent="HUD/ActionPanel"]
+
+[node name="ActionMessage" type="Label" parent="HUD/ActionPanel/VBox"]
+text = "What will your Pokemon do?"
+horizontal_alignment = 1
+
+[node name="Buttons" type="GridContainer" parent="HUD/ActionPanel/VBox"]
+columns = 2
+
+[node name="MoveMenu" type="GridContainer" parent="HUD/ActionPanel/VBox"]
+columns = 2
+
+[node name="Move1" type="Button" parent="HUD/ActionPanel/VBox/MoveMenu"]
+text = "Move 1"
+visible = false
+
+[node name="Move2" type="Button" parent="HUD/ActionPanel/VBox/MoveMenu"]
+text = "Move 2"
+visible = false
+
+[node name="Move3" type="Button" parent="HUD/ActionPanel/VBox/MoveMenu"]
+text = "Move 3"
+visible = false
+
+[node name="Move4" type="Button" parent="HUD/ActionPanel/VBox/MoveMenu"]
+text = "Move 4"
+visible = false
+
+[node name="Back" type="Button" parent="HUD/ActionPanel/VBox/MoveMenu"]
+text = "Back"
+visible = false
+
+[node name="BagMenu" type="VBoxContainer" parent="HUD/ActionPanel/VBox"]
+
+[node name="Categories" type="HBoxContainer" parent="HUD/ActionPanel/VBox/BagMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Capsules" type="Button" parent="HUD/ActionPanel/VBox/BagMenu/Categories"]
+text = "Capsules"
+visible = false
+
+[node name="Medicine" type="Button" parent="HUD/ActionPanel/VBox/BagMenu/Categories"]
+text = "Medicine"
+visible = false
+
+[node name="BattleItems" type="Button" parent="HUD/ActionPanel/VBox/BagMenu/Categories"]
+text = "Battle Items"
+visible = false
+
+[node name="KeyItems" type="Button" parent="HUD/ActionPanel/VBox/BagMenu/Categories"]
+text = "Key Items"
+visible = false
+
+[node name="Other" type="Button" parent="HUD/ActionPanel/VBox/BagMenu/Categories"]
+text = "Other"
+visible = false
+
+[node name="Item1" type="Button" parent="HUD/ActionPanel/VBox/BagMenu"]
+text = "Resonance Capsule"
+icon = ExtResource("2_capsule")
+expand_icon = true
+icon_max_width = 32
+visible = false
+
+[node name="Item2" type="Button" parent="HUD/ActionPanel/VBox/BagMenu"]
+text = "Potion"
+visible = false
+
+[node name="Item3" type="Button" parent="HUD/ActionPanel/VBox/BagMenu"]
+text = "Super Potion"
+visible = false
+
+[node name="Back" type="Button" parent="HUD/ActionPanel/VBox/BagMenu"]
+text = "Back"
+visible = false
+
+[node name="SwitchMenu" type="GridContainer" parent="HUD/ActionPanel/VBox"]
+columns = 2
+
+[node name="Switch1" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 1"
+visible = false
+
+[node name="Switch2" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 2"
+visible = false
+
+[node name="Switch3" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 3"
+visible = false
+
+[node name="Switch4" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 4"
+visible = false
+
+[node name="Switch5" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 5"
+visible = false
+
+[node name="Switch6" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Pokemon 6"
+visible = false
+
+[node name="Back" type="Button" parent="HUD/ActionPanel/VBox/SwitchMenu"]
+text = "Back"
+visible = false
+
+[node name="Fight" type="Button" parent="HUD/ActionPanel/VBox/Buttons"]
+text = "Fight"
+
+[node name="Bag" type="Button" parent="HUD/ActionPanel/VBox/Buttons"]
+text = "Bag"
+
+[node name="Pokemon" type="Button" parent="HUD/ActionPanel/VBox/Buttons"]
+text = "Pokemon"
+
+[node name="Run" type="Button" parent="HUD/ActionPanel/VBox/Buttons"]
+text = "Run"
+
+[connection signal="pressed" from="HUD/ActionPanel/VBox/Buttons/Fight" to="." method="_on_action_pressed" binds=["Fight"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/Buttons/Bag" to="." method="_on_action_pressed" binds=["Bag"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/Buttons/Pokemon" to="." method="_on_action_pressed" binds=["Pokemon"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/Buttons/Run" to="." method="end_battle"]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/MoveMenu/Move1" to="." method="_on_move_pressed" binds=[0]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/MoveMenu/Move2" to="." method="_on_move_pressed" binds=[1]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/MoveMenu/Move3" to="." method="_on_move_pressed" binds=[2]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/MoveMenu/Move4" to="." method="_on_move_pressed" binds=[3]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/MoveMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Item1" to="." method="_on_bag_item_pressed" binds=[0]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Item2" to="." method="_on_bag_item_pressed" binds=[1]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Item3" to="." method="_on_bag_item_pressed" binds=[2]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Back" to="." method="_on_bag_back_pressed"]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Categories/Capsules" to="." method="_on_bag_category_pressed" binds=["Capsules"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Categories/Medicine" to="." method="_on_bag_category_pressed" binds=["Medicine"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Categories/BattleItems" to="." method="_on_bag_category_pressed" binds=["Battle Items"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Categories/KeyItems" to="." method="_on_bag_category_pressed" binds=["Key Items"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/BagMenu/Categories/Other" to="." method="_on_bag_category_pressed" binds=["Other"]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch1" to="." method="_on_switch_pressed" binds=[0]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch2" to="." method="_on_switch_pressed" binds=[1]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch3" to="." method="_on_switch_pressed" binds=[2]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch4" to="." method="_on_switch_pressed" binds=[3]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch5" to="." method="_on_switch_pressed" binds=[4]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Switch6" to="." method="_on_switch_pressed" binds=[5]]
+[connection signal="pressed" from="HUD/ActionPanel/VBox/SwitchMenu/Back" to="." method="_on_switch_back_pressed"]
+
+[node name="Transition" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+z_index = 10
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.02, 1)
+mouse_filter = 2
+
+[node name="OpeningLabel" type="Label" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -24.0
+offset_right = 260.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 28
+text = "A TRAINER BATTLE!"
+horizontal_alignment = 1
